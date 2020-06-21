@@ -3,7 +3,7 @@ exports.run = (client, msg, args) => {
 if (msg.channel.type !== "text") return;
 if (!msg.channel.permissionsFor(msg.member).has("MANAGE_GUILD")) return msg.channel.send("Bu komutu sadece `MANAGE_GUILD` yetkisine sahip olanlar kullanabilir.");
 const limit = args[0] ? args[0] : 0;
-if (limit > 120) return msg.channel.send("Süre limiti maksimum 120 saniye olabilir.");
+if (limit > 100000) return msg.channel.send("Süre limiti maksimum 100000 saniye olabilir.");
 var request = require('request');
 request({
     url: `https://discordapp.com/api/v6/channels/${msg.channel.id}`,
@@ -17,7 +17,7 @@ request({
 });
 
 if (limit == 0) return msg.channel.send("Yavaş mod kaldırıldı :ok_hand: \nTekrar açabilmek için /slowmode **<kaç saniye aralıkla yazılsın>**");
-return msg.channel.send(`Üyeler bundan sonra **${limit}** saniye aralıklarla mesaj gönderebilecek.`);
+return msg.channel.send("Üyeler bundan sonra **${limit}** saniye aralıklarla mesaj gönderebilecek. NOT:`Yalnızca Saniye Biçiminden Sayılar Kabul Edilir, Aksi Takdirde SlowMode Uygulanmaz.` ");
 };
 
 exports.conf = {
